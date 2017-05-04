@@ -1,16 +1,9 @@
-FROM jenkinsci/blueocean:latest
+FROM shelbert/jenkinsci-blueocean:latest
 
 USER root
 
-# https://wiki.alpinelinux.org/wiki/Docker
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories \
     && echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
-    && apk add --update docker
-
-RUN apk add --update sudo 
-
-RUN apk add --update shadow \
-    && groupadd -g 50 staff \
-    && usermod -a -G staff jenkins
-
+    && apk add --update sudo
+    
 USER jenkins
